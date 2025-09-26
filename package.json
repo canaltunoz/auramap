@@ -1,0 +1,44 @@
+{
+  "name": "auramap",
+  "version": "1.0.0",
+  "description": "AuraMap - Full-stack application with NestJS backend and Flutter mobile app",
+  "private": true,
+  "workspaces": [
+    "backend"
+  ],
+  "scripts": {
+    "backend:install": "cd backend && npm install",
+    "backend:start": "cd backend && npm run start",
+    "backend:start:dev": "cd backend && npm run start:dev",
+    "backend:start:debug": "cd backend && npm run start:debug",
+    "backend:build": "cd backend && npm run build",
+    "backend:test": "cd backend && npm run test",
+    "backend:test:e2e": "cd backend && npm run test:e2e",
+    "app:get": "cd app && flutter pub get",
+    "app:run": "cd app && flutter run",
+    "app:build": "cd app && flutter build",
+    "app:test": "cd app && flutter test",
+    "app:analyze": "cd app && flutter analyze",
+    "install:all": "npm run backend:install && npm run app:get",
+    "dev": "concurrently \"npm run backend:start:dev\" \"npm run app:run\"",
+    "test:all": "npm run backend:test && npm run app:test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "nestjs",
+    "flutter",
+    "typescript",
+    "dart",
+    "fullstack",
+    "mobile",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/canaltunoz/auramap.git"
+  }
+}
