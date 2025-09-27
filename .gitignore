@@ -175,3 +175,9 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+
+# Backend env files
+backend/.env
+backend/.env.local
+backend/.env.*
