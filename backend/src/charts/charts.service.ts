@@ -5,7 +5,10 @@ import { PrismaService } from '../prisma/prisma.service';
 export class ChartsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(userId: string, data: { name: string; birthDatetime: string; timezone?: string | null }) {
+  async create(
+    userId: string,
+    data: { name: string; birthDatetime: string; timezone?: string | null },
+  ) {
     const birth = new Date(data.birthDatetime);
     return this.prisma.chart.create({
       data: {
@@ -18,7 +21,13 @@ export class ChartsService {
   }
 
   async listMine(userId: string) {
-    return this.prisma.chart.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } });
+    return this.prisma.chart.findMany({
+      where: { userId },
+      orderBy: { createdAt: 'desc' },
+    });
+  }
+
+  async listAll() {
+    return this.prisma.chart.findMany({ orderBy: { createdAt: 'desc' } });
   }
 }
-
