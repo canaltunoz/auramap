@@ -23,6 +23,15 @@
   "language": "Language",
   "languageSystem": "System",
   "languageEnglish": "English",
-  "languageTurkish": "Turkish"
+  "languageTurkish": "Turkish",
+  "skip": "Skip",
+  "next": "Next",
+  "startNow": "Start Now",
+  "onb1Title": "Discover Yourself",
+  "onb1Body": "Begin your journey. Explore your unique design.",
+  "onb2Title": "Your Personal Roadmap",
+  "onb2Body": "See your chart, strategy and authority.",
+  "onb3Title": "Your Daily Guide",
+  "onb3Body": "Receive insights and tips every day."
 }
 

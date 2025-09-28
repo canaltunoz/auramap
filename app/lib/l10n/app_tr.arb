@@ -24,5 +24,15 @@
   "languageSystem": "Sistem",
   "languageEnglish": "İngilizce",
   "languageTurkish": "Türkçe"
+,
+  "skip": "Atla",
+  "next": "İleri",
+  "startNow": "Şimdi Başla",
+  "onb1Title": "Kendini Keşfet",
+  "onb1Body": "Yolculuğuna başla. Benzersiz tasarımını keşfet.",
+  "onb2Title": "Kişisel Yol Haritan",
+  "onb2Body": "Haritanı, stratejini ve otoriteni gör.",
+  "onb3Title": "Günlük Rehberin",
+  "onb3Body": "Her gün içgörüler ve ipuçları al."
 }
 

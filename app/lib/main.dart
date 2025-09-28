@@ -4,11 +4,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/localization/locale_provider.dart';
 import 'core/theme/theme_provider.dart';
-import 'features/auth/providers/auth_provider.dart';
 import 'features/auth/screens/login_screen.dart';
 import 'features/auth/screens/register_screen.dart';
+import 'features/auth/screens/login_choice_screen.dart';
 import 'features/charts/screens/charts_screen.dart';
 import 'features/settings/screens/settings_screen.dart';
+import 'features/splash/splash_screen.dart';
+import 'features/onboarding/screens/onboarding_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -19,7 +21,6 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final auth = ref.watch(authProvider);
     final themeMode = ref.watch(themeProvider);
     final locale = ref.watch(localeProvider);
     return MaterialApp(
@@ -44,8 +45,11 @@ class MyApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      initialRoute: auth.authenticated ? '/charts' : '/login',
+      initialRoute: '/splash',
       routes: {
+        '/splash': (_) => const SplashScreen(),
+        '/onboarding': (_) => const OnboardingScreen(),
+        '/welcome': (_) => const LoginChoiceScreen(),
         '/login': (_) => const LoginScreen(),
         '/register': (_) => const RegisterScreen(),
         '/charts': (_) => const ChartsScreen(),
