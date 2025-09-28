@@ -88,7 +88,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         Navigator.of(context).pushReplacementNamed('/welcome');
                       }
                     },
-                    child: Text(t.startNow),
+                    child: Text(
+                      _index < _pages.length - 1 ? t.continueLabel : t.startNow,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
