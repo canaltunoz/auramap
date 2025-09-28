@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:auramap_app/l10n/app_localizations.dart';
 import '../../core/storage/secure_storage.dart';
+import '../charts/service/charts_service.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -61,8 +63,51 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
       Navigator.of(context).pushReplacementNamed('/onboarding');
       return;
     }
+
     if (isAuthed) {
-      Navigator.of(context).pushReplacementNamed('/charts');
+      // Check if user has existing charts
+      try {
+        final chartsService = ChartsService();
+        bool hasCharts;
+        try {
+          final result = await chartsService.hasCharts();
+          final dynamic v =
+              (result['hasCharts'] ??
+              result['count'] ??
+              result['total'] ??
+              result['length']);
+          if (v is bool) {
+            hasCharts = v;
+          } else if (v is num) {
+            hasCharts = v > 0;
+          } else if (v is String) {
+            final lower = v.toLowerCase().trim();
+            hasCharts = lower == 'true' || int.tryParse(lower) != 0;
+          } else {
+            hasCharts = false;
+          }
+        } catch (_) {
+          try {
+            final list = await chartsService.listMine();
+            hasCharts = list.isNotEmpty;
+          } catch (_) {
+            hasCharts = false;
+          }
+        }
+
+        if (!mounted) return;
+
+        if (hasCharts) {
+          Navigator.of(context).pushReplacementNamed('/charts');
+        } else {
+          Navigator.of(context).pushReplacementNamed('/chart-creation');
+        }
+      } catch (e) {
+        // If there's an error checking charts, go to charts screen anyway
+        if (mounted) {
+          Navigator.of(context).pushReplacementNamed('/charts');
+        }
+      }
     } else {
       Navigator.of(context).pushReplacementNamed('/login');
     }
@@ -80,7 +125,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF1A1A1A) : Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Stack(
         children: [
           // Background - clean white/light gray
@@ -133,11 +178,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                       children: [
                         // Main title - Human Design
                         Text(
-                          'Human Design',
+                          AppLocalizations.of(context)!.humanDesign,
                           style: theme.textTheme.displayMedium?.copyWith(
-                            color: isDark
-                                ? Colors.white70
-                                : const Color(0xFF4A4A4A),
+                            color: theme.colorScheme.onSurface.withValues(
+                              alpha: 0.85,
+                            ),
                             fontWeight: FontWeight.w300,
                             letterSpacing: 2.0,
                             fontSize: 32,

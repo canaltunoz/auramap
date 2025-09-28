@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:auramap_app/l10n/app_localizations.dart';
 import '../providers/chart_creation_provider.dart';
 
 class BirthTimeStepScreen extends ConsumerStatefulWidget {
@@ -55,7 +56,7 @@ class _BirthTimeStepScreenState extends ConsumerState<BirthTimeStepScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         children: [
           // Content area
@@ -71,12 +72,12 @@ class _BirthTimeStepScreenState extends ConsumerState<BirthTimeStepScreen> {
                   children: [
                     // Title
                     Text(
-                      'Doğum Saati',
+                      AppLocalizations.of(context)!.birthTimeTitle,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.gotu(
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
 
@@ -84,11 +85,13 @@ class _BirthTimeStepScreenState extends ConsumerState<BirthTimeStepScreen> {
 
                     // Subtitle
                     Text(
-                      'Doğum anındaki gezegenlerin ve yıldızların tam\nkonumunu hesaplayabilmemiz için doğum saatine\nihtiyacımız var. Bu bilgi, senin Human Design\'ını\noluşturmak için kritik öneme sahiptir.',
+                      AppLocalizations.of(context)!.birthTimeSubtitle,
                       style: GoogleFonts.gotu(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                        color: Colors.black54,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.65),
                         height: 1.4,
                       ),
                       textAlign: TextAlign.center,
@@ -124,15 +127,19 @@ class _BirthTimeStepScreenState extends ConsumerState<BirthTimeStepScreen> {
                       ref.read(chartCreationProvider.notifier).nextStep();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFF5F5F5),
-                      foregroundColor: Colors.black54,
+                      backgroundColor: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
+                      foregroundColor: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: 0.65),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
                     child: Text(
-                      'Emin Değilim',
+                      AppLocalizations.of(context)!.notSure,
                       style: GoogleFonts.gotu(
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
@@ -160,7 +167,7 @@ class _BirthTimeStepScreenState extends ConsumerState<BirthTimeStepScreen> {
                       ),
                     ),
                     child: Text(
-                      'Devam Et',
+                      AppLocalizations.of(context)!.continueButton,
                       style: GoogleFonts.gotu(
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
@@ -190,7 +197,7 @@ class _BirthTimeStepScreenState extends ConsumerState<BirthTimeStepScreen> {
                 height: 48,
                 margin: const EdgeInsets.symmetric(horizontal: 0),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFEFEFF4),
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
@@ -232,7 +239,9 @@ class _BirthTimeStepScreenState extends ConsumerState<BirthTimeStepScreen> {
                                 style: GoogleFonts.gotu(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w400,
-                                  color: Colors.black,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
                                 ),
                               ),
                             ),
@@ -248,7 +257,7 @@ class _BirthTimeStepScreenState extends ConsumerState<BirthTimeStepScreen> {
                             style: GoogleFonts.gotu(
                               fontSize: 20,
                               fontWeight: FontWeight.w400,
-                              color: Colors.black,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                         ),
@@ -275,7 +284,9 @@ class _BirthTimeStepScreenState extends ConsumerState<BirthTimeStepScreen> {
                                 style: GoogleFonts.gotu(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w400,
-                                  color: Colors.black,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
                                 ),
                               ),
                             ),

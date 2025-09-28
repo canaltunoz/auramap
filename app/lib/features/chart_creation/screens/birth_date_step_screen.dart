@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:auramap_app/l10n/app_localizations.dart';
 import '../providers/chart_creation_provider.dart';
 
 class BirthDateStepScreen extends ConsumerStatefulWidget {
@@ -71,7 +72,7 @@ class _BirthDateStepScreenState extends ConsumerState<BirthDateStepScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         children: [
           // Content area
@@ -87,12 +88,12 @@ class _BirthDateStepScreenState extends ConsumerState<BirthDateStepScreen> {
                   children: [
                     // Title
                     Text(
-                      'Doğum Tarihi',
+                      AppLocalizations.of(context)!.birthDateTitle,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.gotu(
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
 
@@ -100,12 +101,14 @@ class _BirthDateStepScreenState extends ConsumerState<BirthDateStepScreen> {
 
                     // Subtitle
                     Text(
-                      'Doğum anın, benzersiz tasarımının anahtarıdır.\nKendi BodyGraph\'ını görebilmen için doğum\ntarihini bizimle paylaş',
+                      AppLocalizations.of(context)!.birthDateSubtitle,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.gotu(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                        color: Colors.black54,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.65),
                         height: 1.4,
                       ),
                     ),
@@ -139,9 +142,12 @@ class _BirthDateStepScreenState extends ConsumerState<BirthDateStepScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: const Text(
-                  'Devam Et',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                child: Text(
+                  AppLocalizations.of(context)!.continueButton,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),
@@ -165,7 +171,7 @@ class _BirthDateStepScreenState extends ConsumerState<BirthDateStepScreen> {
                 height: 48,
                 margin: const EdgeInsets.symmetric(horizontal: 0),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFEFEFF4),
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
@@ -205,7 +211,9 @@ class _BirthDateStepScreenState extends ConsumerState<BirthDateStepScreen> {
                                 style: GoogleFonts.gotu(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w400,
-                                  color: Colors.black,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
                                 ),
                               ),
                             ),
@@ -225,20 +233,36 @@ class _BirthDateStepScreenState extends ConsumerState<BirthDateStepScreen> {
                             });
                             _updateDate();
                           },
-                          children: months
-                              .map(
-                                (m) => Center(
-                                  child: Text(
-                                    m,
-                                    style: GoogleFonts.gotu(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
+                          children:
+                              [
+                                    AppLocalizations.of(context)!.january,
+                                    AppLocalizations.of(context)!.february,
+                                    AppLocalizations.of(context)!.march,
+                                    AppLocalizations.of(context)!.april,
+                                    AppLocalizations.of(context)!.may,
+                                    AppLocalizations.of(context)!.june,
+                                    AppLocalizations.of(context)!.july,
+                                    AppLocalizations.of(context)!.august,
+                                    AppLocalizations.of(context)!.september,
+                                    AppLocalizations.of(context)!.october,
+                                    AppLocalizations.of(context)!.november,
+                                    AppLocalizations.of(context)!.december,
+                                  ]
+                                  .map(
+                                    (m) => Center(
+                                      child: Text(
+                                        m,
+                                        style: GoogleFonts.gotu(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w400,
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onSurface,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              )
-                              .toList(),
+                                  )
+                                  .toList(),
                         ),
                       ),
                       SizedBox(width: spacing),
@@ -263,7 +287,9 @@ class _BirthDateStepScreenState extends ConsumerState<BirthDateStepScreen> {
                                 style: GoogleFonts.gotu(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w400,
-                                  color: Colors.black,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
                                 ),
                               ),
                             );

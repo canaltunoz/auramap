@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auramap_app/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../service/charts_service.dart';
+import '../../chart_creation/providers/chart_creation_provider.dart';
 import '../../auth/providers/auth_provider.dart';
 
 final chartsServiceProvider = Provider<ChartsService>((ref) => ChartsService());
@@ -15,8 +16,6 @@ class ChartsScreen extends ConsumerStatefulWidget {
 
 class _ChartsScreenState extends ConsumerState<ChartsScreen> {
   late Future<List<dynamic>> _future;
-  final _name = TextEditingController();
-  final _birth = TextEditingController();
 
   @override
   void initState() {
@@ -35,6 +34,11 @@ class _ChartsScreenState extends ConsumerState<ChartsScreen> {
     final t = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pushNamed('/profile'),
+          icon: const Icon(Icons.person_outline),
+          tooltip: t.profile,
+        ),
         title: Text(t.charts),
         actions: [
           IconButton(
@@ -80,45 +84,9 @@ class _ChartsScreenState extends ConsumerState<ChartsScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: Text(t.createChart),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: _name,
-                    decoration: InputDecoration(labelText: t.name),
-                  ),
-                  TextField(
-                    controller: _birth,
-                    decoration: InputDecoration(labelText: t.birthIso),
-                  ),
-                ],
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text(t.cancel),
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await ref
-                        .read(chartsServiceProvider)
-                        .create(name: _name.text, birthDatetime: _birth.text);
-                    if (!context.mounted) return;
-                    Navigator.pop(context);
-                    _name.clear();
-                    _birth.clear();
-                    await _reload();
-                  },
-                  child: Text(t.create),
-                ),
-              ],
-            ),
-          );
+        onPressed: () {
+          ref.read(chartCreationProvider.notifier).reset();
+          Navigator.of(context).pushNamed('/chart-creation');
         },
         child: const Icon(Icons.add),
       ),

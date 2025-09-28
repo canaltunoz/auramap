@@ -1,0 +1,364 @@
+{
+  "channels": [
+    {
+      "channel": "61-24",
+      "name": "Inner Truth",
+      "centers": [
+        "Head",
+        "Ajna"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Ic gercegi kavrama, sezgisel ilhami zihinle isleme"
+    },
+    {
+      "channel": "63-4",
+      "name": "Logic",
+      "centers": [
+        "Head",
+        "Ajna"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Mantiksal supheden yola cikarak hipotez ve test"
+    },
+    {
+      "channel": "64-47",
+      "name": "Abstraction",
+      "centers": [
+        "Head",
+        "Ajna"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Gecmis deneyim karmasasindan anlam cikarma"
+    },
+    {
+      "channel": "17-62",
+      "name": "Organization",
+      "centers": [
+        "Ajna",
+        "Throat"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Gorusu detaylandirma ve adlandirma"
+    },
+    {
+      "channel": "11-56",
+      "name": "Storytelling",
+      "centers": [
+        "Ajna",
+        "Throat"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Fikirleri paylasma, yol ve hikaye anlatimi"
+    },
+    {
+      "channel": "43-23",
+      "name": "Structuring (Genius to Freak)",
+      "centers": [
+        "Ajna",
+        "Throat"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Ani icgoru ve yalIn ifade ile atilim"
+    },
+    {
+      "channel": "1-8",
+      "name": "Creative Contribution",
+      "centers": [
+        "G",
+        "Throat"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Ozgul yaraticiligi kollektife katkiya donusturme"
+    },
+    {
+      "channel": "7-31",
+      "name": "The Alpha",
+      "centers": [
+        "G",
+        "Throat"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Kolektif yon ve liderlik sesi"
+    },
+    {
+      "channel": "13-33",
+      "name": "Witnessing / Privacy",
+      "centers": [
+        "G",
+        "Throat"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Dinlemek, hatiralari tasimak ve paylasmak icin geri cekilme"
+    },
+    {
+      "channel": "10-20",
+      "name": "Awakening",
+      "centers": [
+        "G",
+        "Throat"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Simdide otantik davranisi ifade etme"
+    },
+    {
+      "channel": "57-20",
+      "name": "The Brain Wave",
+      "centers": [
+        "Spleen",
+        "Throat"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Ani berraklik ve spontane ifade"
+    },
+    {
+      "channel": "48-16",
+      "name": "The Wavelength",
+      "centers": [
+        "Spleen",
+        "Throat"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Ustaliga giden tekrar, becerinin sergilenmesi"
+    },
+    {
+      "channel": "34-20",
+      "name": "Charisma",
+      "centers": [
+        "Sacral",
+        "Throat"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Ham sakral enerjiyi aninda eyleme dokmek"
+    },
+    {
+      "channel": "45-21",
+      "name": "Money / Material Control",
+      "centers": [
+        "Throat",
+        "Heart/Ego"
+      ],
+      "circuit": "Tribal",
+      "short_theme": "Kaynak toplama ve dagitma uzerinden kontrol"
+    },
+    {
+      "channel": "35-36",
+      "name": "Experience",
+      "centers": [
+        "Throat",
+        "Solar Plexus"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Deneyim akisi, degisimle olgunlasma"
+    },
+    {
+      "channel": "12-22",
+      "name": "Openness / Grace",
+      "centers": [
+        "Throat",
+        "Solar Plexus"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Duygusal aciklik ve dogru ton/zaman ile ifade"
+    },
+    {
+      "channel": "5-15",
+      "name": "Rhythm",
+      "centers": [
+        "Sacral",
+        "G"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Insani ritim ve kaliplarda denge/esneklik"
+    },
+    {
+      "channel": "2-14",
+      "name": "The Beat",
+      "centers": [
+        "G",
+        "Sacral"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Yonu bilip enerjiyle dogru yere akmak"
+    },
+    {
+      "channel": "29-46",
+      "name": "Discovery",
+      "centers": [
+        "Sacral",
+        "G"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Evet deyip deneyime bedenle giris ve kesif"
+    },
+    {
+      "channel": "10-34",
+      "name": "Exploration",
+      "centers": [
+        "G",
+        "Sacral"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Otantik davranisla enerjiyi harekete gecirmek"
+    },
+    {
+      "channel": "10-57",
+      "name": "Perfected Form",
+      "centers": [
+        "G",
+        "Spleen"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Sezgisel sagduyu ile dogru davranis"
+    },
+    {
+      "channel": "25-51",
+      "name": "Initiation",
+      "centers": [
+        "G",
+        "Heart/Ego"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Sok araciligiyla ruhsal uyanis ve cesaret"
+    },
+    {
+      "channel": "27-50",
+      "name": "Preservation",
+      "centers": [
+        "Spleen",
+        "Sacral"
+      ],
+      "circuit": "Tribal",
+      "short_theme": "Bakim, besleme ve topluluk kurallari"
+    },
+    {
+      "channel": "34-57",
+      "name": "Power",
+      "centers": [
+        "Spleen",
+        "Sacral"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Sakral gucun sezgisel yonetime akis"
+    },
+    {
+      "channel": "44-26",
+      "name": "Surrender",
+      "centers": [
+        "Spleen",
+        "Heart/Ego"
+      ],
+      "circuit": "Tribal",
+      "short_theme": "Gecmisi tanima ile ikna/pazarlik ve kaynak akisi"
+    },
+    {
+      "channel": "18-58",
+      "name": "Judgment",
+      "centers": [
+        "Spleen",
+        "Root"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Iyilestirme tutkusu ile duzeltme ve nese"
+    },
+    {
+      "channel": "28-38",
+      "name": "Struggle",
+      "centers": [
+        "Spleen",
+        "Root"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Anlam ugruna mucadele ve dayaniklilik"
+    },
+    {
+      "channel": "32-54",
+      "name": "Transformation (Enterprise)",
+      "centers": [
+        "Spleen",
+        "Root"
+      ],
+      "circuit": "Tribal",
+      "short_theme": "Surdurulebilir hirs ve donusum"
+    },
+    {
+      "channel": "3-60",
+      "name": "Mutation",
+      "centers": [
+        "Root",
+        "Sacral"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Sinirlamadan yenilige atilim"
+    },
+    {
+      "channel": "9-52",
+      "name": "Concentration",
+      "centers": [
+        "Root",
+        "Sacral"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Sakin odak ve konsantrasyon"
+    },
+    {
+      "channel": "42-53",
+      "name": "Maturation",
+      "centers": [
+        "Root",
+        "Sacral"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Sureci tamamlama ve buyume"
+    },
+    {
+      "channel": "41-30",
+      "name": "Desire",
+      "centers": [
+        "Root",
+        "Solar Plexus"
+      ],
+      "circuit": "Collective",
+      "short_theme": "Duygusal arzu ile deneyimi baslatma"
+    },
+    {
+      "channel": "39-55",
+      "name": "Emoting / Spirit",
+      "centers": [
+        "Root",
+        "Solar Plexus"
+      ],
+      "circuit": "Individual",
+      "short_theme": "Duygu akisinda ruh ve bolluk bilinci"
+    },
+    {
+      "channel": "19-49",
+      "name": "Sensitivity / Principles",
+      "centers": [
+        "Root",
+        "Solar Plexus"
+      ],
+      "circuit": "Tribal",
+      "short_theme": "Ihtiyaclar ve ilkeler uzerinden baglanti"
+    },
+    {
+      "channel": "37-40",
+      "name": "Community / Friendship",
+      "centers": [
+        "Solar Plexus",
+        "Heart/Ego"
+      ],
+      "circuit": "Tribal",
+      "short_theme": "Aile/arkadaslik sozlesmesi ve is bolumu"
+    },
+    {
+      "channel": "59-6",
+      "name": "Mating / Intimacy",
+      "centers": [
+        "Sacral",
+        "Solar Plexus"
+      ],
+      "circuit": "Tribal",
+      "short_theme": "Yakinlik, cinsellik ve duygusal sinirlar"
+    }
+  ]
+}

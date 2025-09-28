@@ -10,8 +10,10 @@ import 'features/auth/screens/register_screen.dart';
 import 'features/auth/screens/login_choice_screen.dart';
 import 'features/charts/screens/charts_screen.dart';
 import 'features/settings/screens/settings_screen.dart';
+import 'features/profile/screens/profile_screen.dart';
 import 'features/splash/splash_screen.dart';
 import 'features/onboarding/screens/onboarding_screen.dart';
+import 'features/chart_creation/screens/chart_creation_flow_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,6 +62,8 @@ class MyApp extends ConsumerWidget {
         '/register': (_) => const RegisterScreen(),
         '/charts': (_) => const ChartsScreen(),
         '/settings': (_) => const SettingsScreen(),
+        '/profile': (_) => const ProfileScreen(),
+        '/chart-creation': (_) => const ChartCreationFlowScreen(),
       },
     );
   }

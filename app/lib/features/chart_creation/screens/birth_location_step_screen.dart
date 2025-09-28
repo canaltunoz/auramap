@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/chart_creation_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:auramap_app/l10n/app_localizations.dart';
 
 class BirthLocationStepScreen extends ConsumerStatefulWidget {
   const BirthLocationStepScreen({super.key});
@@ -75,7 +76,7 @@ class _BirthLocationStepScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         children: [
           // Content area
@@ -91,12 +92,12 @@ class _BirthLocationStepScreenState
 
                   // Title
                   Text(
-                    'Doğum Yeri',
+                    AppLocalizations.of(context)!.birthLocationTitle,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.gotu(
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
-                      color: Colors.black,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
 
@@ -104,12 +105,14 @@ class _BirthLocationStepScreenState
 
                   // Subtitle
                   Text(
-                    'Doğduğun yer çok önemlidir. Bu bilgi sayesinde\nkaderinde iz bırakan gezegenlerin ve yıldızların\ntam konumunu belirleyebiliriz.',
+                    AppLocalizations.of(context)!.birthLocationSubtitle,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.gotu(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
-                      color: Colors.black54,
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: 0.65),
                       height: 1.4,
                     ),
                   ),
@@ -119,24 +122,28 @@ class _BirthLocationStepScreenState
                   // Location search field
                   Container(
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF5F5F5),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: TextField(
                       controller: _locationController,
                       focusNode: _locationFocus,
                       onChanged: _searchLocations,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                       decoration: InputDecoration(
-                        hintText: 'Ülke yada şehir arayın',
+                        hintText: AppLocalizations.of(
+                          context,
+                        )!.searchCountryCity,
                         hintStyle: GoogleFonts.gotu(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
-                          color: Colors.black54,
+                          color: Theme.of(context).hintColor,
                         ),
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.symmetric(
@@ -145,7 +152,9 @@ class _BirthLocationStepScreenState
                         ),
                         suffixIcon: Icon(
                           Icons.search,
-                          color: Colors.black54,
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withValues(alpha: 0.65),
                           size: 20,
                         ),
                       ),
@@ -164,10 +173,10 @@ class _BirthLocationStepScreenState
                           return ListTile(
                             title: Text(
                               suggestion,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
-                                color: Colors.black,
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                             ),
                             onTap: () {
@@ -206,10 +215,10 @@ class _BirthLocationStepScreenState
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  disabledBackgroundColor: Colors.grey[300],
+                  disabledBackgroundColor: Theme.of(context).disabledColor,
                 ),
                 child: Text(
-                  'Devam Et',
+                  AppLocalizations.of(context)!.continueButton,
                   style: GoogleFonts.gotu(
                     fontSize: 20,
                     fontWeight: FontWeight.w400,

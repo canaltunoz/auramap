@@ -112,4 +112,127 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get continueLabel => 'Continue';
+
+  @override
+  String get chartCreationTitle => 'Create Your Chart';
+
+  @override
+  String get birthDateTitle => 'Birth Date';
+
+  @override
+  String get birthDateSubtitle =>
+      'Birth date is essential for creating your BodyGraph. Please share your birth date with us.';
+
+  @override
+  String get birthTimeTitle => 'Birth Time';
+
+  @override
+  String get birthTimeSubtitle =>
+      'Birth time is essential for creating your BodyGraph. Please share your birth time with us.';
+
+  @override
+  String get birthLocationTitle => 'Birth Location';
+
+  @override
+  String get birthLocationSubtitle =>
+      'Birth location is essential for creating your BodyGraph. Please share your birth location with us.';
+
+  @override
+  String get selectDate => 'Select Date';
+
+  @override
+  String get selectTime => 'Select Time';
+
+  @override
+  String get searchLocation => 'Search Location';
+
+  @override
+  String get day => 'Day';
+
+  @override
+  String get month => 'Month';
+
+  @override
+  String get year => 'Year';
+
+  @override
+  String get hour => 'Hour';
+
+  @override
+  String get minute => 'Minute';
+
+  @override
+  String get january => 'January';
+
+  @override
+  String get february => 'February';
+
+  @override
+  String get march => 'March';
+
+  @override
+  String get april => 'April';
+
+  @override
+  String get may => 'May';
+
+  @override
+  String get june => 'June';
+
+  @override
+  String get july => 'July';
+
+  @override
+  String get august => 'August';
+
+  @override
+  String get september => 'September';
+
+  @override
+  String get october => 'October';
+
+  @override
+  String get november => 'November';
+
+  @override
+  String get december => 'December';
+
+  @override
+  String get continueButton => 'Continue';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get finish => 'Finish';
+
+  @override
+  String get notSure => 'Not sure';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get searchCountryCity => 'Search country or city';
+
+  @override
+  String get humanDesign => 'Human Design';
+
+  @override
+  String get loginTitle => 'Login';
+
+  @override
+  String get continueWithApple => 'Continue with Apple';
+
+  @override
+  String get continueWithGoogle => 'Continue with Google';
+
+  @override
+  String get signingInWithGoogle => 'Signing in with Google…';
+
+  @override
+  String get googleLoginSuccess => 'Google sign-in successful!';
+
+  @override
+  String get googleLoginFailed => 'Google sign-in failed';
 }

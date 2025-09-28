@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../../core/ui/themed_image.dart';
+import 'package:auramap_app/l10n/app_localizations.dart';
 import '../../../core/services/google_auth_service.dart';
 import '../providers/auth_provider.dart';
+import '../../charts/service/charts_service.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -13,6 +15,51 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
+  Future<void> _navigateAfterLogin() async {
+    try {
+      final chartsService = ChartsService();
+      bool hasCharts;
+      try {
+        final result = await chartsService.hasCharts();
+        final dynamic v =
+            (result['hasCharts'] ??
+            result['count'] ??
+            result['total'] ??
+            result['length']);
+        if (v is bool) {
+          hasCharts = v;
+        } else if (v is num) {
+          hasCharts = v > 0;
+        } else if (v is String) {
+          final lower = v.toLowerCase().trim();
+          hasCharts = lower == 'true' || int.tryParse(lower) != 0;
+        } else {
+          hasCharts = false;
+        }
+      } catch (_) {
+        try {
+          final list = await chartsService.listMine();
+          hasCharts = list.isNotEmpty;
+        } catch (_) {
+          hasCharts = false;
+        }
+      }
+
+      if (!mounted) return;
+
+      if (hasCharts) {
+        Navigator.of(context).pushReplacementNamed('/charts');
+      } else {
+        Navigator.of(context).pushReplacementNamed('/chart-creation');
+      }
+    } catch (e) {
+      // If there's an error checking charts, go to charts screen anyway
+      if (mounted) {
+        Navigator.of(context).pushReplacementNamed('/charts');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -20,7 +67,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final isSmallScreen = screenHeight < 700;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -51,10 +98,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 flex: 1,
                 child: Center(
                   child: Text(
-                    'Giriş Yapın',
+                    AppLocalizations.of(context)!.loginTitle,
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: Colors.black87,
+                      color: Theme.of(context).colorScheme.onSurface,
                       fontSize: isSmallScreen ? 20 : 24,
                     ),
                     textAlign: TextAlign.center,
@@ -91,7 +138,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           height: 20,
                           color: Colors.white,
                         ),
-                        label: const Text('Apple ile Devam Et'),
+                        label: Text(
+                          AppLocalizations.of(context)!.continueWithApple,
+                        ),
                       ),
                     ),
                     SizedBox(height: isSmallScreen ? 12 : 16),
@@ -100,8 +149,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       width: double.infinity,
                       child: ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[300],
-                          foregroundColor: Colors.black87,
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.surfaceContainerHighest,
+                          foregroundColor: Theme.of(
+                            context,
+                          ).colorScheme.onSurface,
                           padding: EdgeInsets.symmetric(
                             vertical: isSmallScreen ? 14 : 16,
                           ),
@@ -114,8 +167,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           try {
                             // Show loading indicator
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Google ile giriş yapılıyor...'),
+                              SnackBar(
+                                content: Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.signingInWithGoogle,
+                                ),
                               ),
                             );
 
@@ -133,14 +190,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                 .read(authProvider.notifier)
                                 .googleLogin(result.serverAuthCode);
 
-                            // Navigate to charts screen on success
+                            // Navigate after successful login
+                            await _navigateAfterLogin();
                             if (mounted) {
-                              Navigator.of(
-                                context,
-                              ).pushReplacementNamed('/charts');
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('✅ Google ile giriş başarılı!'),
+                                SnackBar(
+                                  content: Text(
+                                    '✅ ${AppLocalizations.of(context)!.googleLoginSuccess}',
+                                  ),
                                   backgroundColor: Colors.green,
                                 ),
                               );
@@ -151,7 +208,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    '❌ Google girişi başarısız: $error',
+                                    '❌ ${AppLocalizations.of(context)!.googleLoginFailed}: $error',
                                   ),
                                   backgroundColor: Colors.red,
                                 ),
@@ -164,7 +221,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           width: 20,
                           height: 20,
                         ),
-                        label: const Text('Google ile Devam Et'),
+                        label: Text(
+                          AppLocalizations.of(context)!.continueWithGoogle,
+                        ),
                       ),
                     ),
                     // Bottom padding to position buttons just above safe area
