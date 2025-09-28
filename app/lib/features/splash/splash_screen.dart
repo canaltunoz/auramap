@@ -19,7 +19,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   Future<void> _navigate() async {
-    await Future.delayed(const Duration(milliseconds: 800));
+    await Future.delayed(const Duration(milliseconds: 1200));
     final seen = await SecureStorage.read('onboarding_seen');
     final isAuthed = (await SecureStorage.getAccess())?.isNotEmpty == true;
 

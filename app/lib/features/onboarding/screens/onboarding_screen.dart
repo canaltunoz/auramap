@@ -40,18 +40,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          TextButton(
-            onPressed: () async {
-              await _markSeen();
-              if (!context.mounted) return;
-              Navigator.of(context).pushReplacementNamed('/welcome');
-            },
-            child: Text(t.skip),
-          ),
-        ],
-      ),
       body: Column(
         children: [
           Expanded(
@@ -83,23 +71,39 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           const SizedBox(height: 12),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
-            child: SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () async {
-                  if (_index < _pages.length - 1) {
-                    _controller.nextPage(
-                      duration: const Duration(milliseconds: 250),
-                      curve: Curves.easeOut,
-                    );
-                  } else {
-                    await _markSeen();
-                    if (!context.mounted) return;
-                    Navigator.of(context).pushReplacementNamed('/welcome');
-                  }
-                },
-                child: Text(_index < _pages.length - 1 ? t.next : t.startNow),
-              ),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if (_index < _pages.length - 1) {
+                        _controller.nextPage(
+                          duration: const Duration(milliseconds: 250),
+                          curve: Curves.easeOut,
+                        );
+                      } else {
+                        await _markSeen();
+                        if (!context.mounted) return;
+                        Navigator.of(context).pushReplacementNamed('/welcome');
+                      }
+                    },
+                    child: Text(t.startNow),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () async {
+                      await _markSeen();
+                      if (!context.mounted) return;
+                      Navigator.of(context).pushReplacementNamed('/welcome');
+                    },
+                    child: Text(t.skip),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
