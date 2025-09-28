@@ -19,7 +19,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   Future<void> _navigate() async {
-    await Future.delayed(const Duration(milliseconds: 1200));
+    await Future.delayed(const Duration(milliseconds: 5000));
     final seen = await SecureStorage.read('onboarding_seen');
     final isAuthed = (await SecureStorage.getAccess())?.isNotEmpty == true;
 
@@ -31,7 +31,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     if (isAuthed) {
       Navigator.of(context).pushReplacementNamed('/charts');
     } else {
-      Navigator.of(context).pushReplacementNamed('/welcome');
+      Navigator.of(context).pushReplacementNamed('/login');
     }
   }
 

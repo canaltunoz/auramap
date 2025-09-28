@@ -85,7 +85,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       } else {
                         await _markSeen();
                         if (!context.mounted) return;
-                        Navigator.of(context).pushReplacementNamed('/welcome');
+                        Navigator.of(context).pushReplacementNamed('/login');
                       }
                     },
                     child: Text(
@@ -100,7 +100,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     onPressed: () async {
                       await _markSeen();
                       if (!context.mounted) return;
-                      Navigator.of(context).pushReplacementNamed('/welcome');
+                      Navigator.of(context).pushReplacementNamed('/login');
                     },
                     child: Text(t.skip),
                   ),
