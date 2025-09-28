@@ -1,0 +1,28 @@
+{
+  "appTitle": "AuraMap",
+  "login": "Giriş Yap",
+  "register": "Kayıt Ol",
+  "createAccount": "Hesap oluştur",
+  "email": "E-posta",
+  "password": "Şifre",
+  "noAccountRegister": "Hesabın yok mu? Kayıt ol",
+  "haveAccountLogin": "Hesabın var mı? Giriş yap",
+  "charts": "Çizelgeler",
+  "logout": "Çıkış Yap",
+  "noChartsYet": "Henüz çizelge yok",
+  "createChart": "Çizelge Oluştur",
+  "name": "Ad",
+  "birthIso": "Doğum (ISO8601)",
+  "cancel": "İptal",
+  "create": "Oluştur",
+  "settings": "Ayarlar",
+  "theme": "Tema",
+  "themeSystem": "Sistem",
+  "themeLight": "Açık",
+  "themeDark": "Koyu",
+  "language": "Dil",
+  "languageSystem": "Sistem",
+  "languageEnglish": "İngilizce",
+  "languageTurkish": "Türkçe"
+}
+

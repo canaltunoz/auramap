@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auramap_app/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../service/charts_service.dart';
 import '../../auth/providers/auth_provider.dart';
@@ -31,18 +32,24 @@ class _ChartsScreenState extends ConsumerState<ChartsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Charts'),
+        title: Text(t.charts),
         actions: [
+          IconButton(
+            onPressed: () => Navigator.of(context).pushNamed('/settings'),
+            icon: const Icon(Icons.settings),
+            tooltip: t.settings,
+          ),
           IconButton(
             onPressed: () async {
               await ref.read(authProvider.notifier).logout();
-              if (!mounted) return;
+              if (!context.mounted) return;
               Navigator.of(context).pushReplacementNamed('/login');
             },
             icon: const Icon(Icons.logout),
-            tooltip: 'Logout',
+            tooltip: t.logout,
           ),
         ],
       ),
@@ -54,7 +61,7 @@ class _ChartsScreenState extends ConsumerState<ChartsScreen> {
           }
           final items = snap.data ?? [];
           if (items.isEmpty) {
-            return const Center(child: Text('No charts yet'));
+            return Center(child: Text(t.noChartsYet));
           }
           return RefreshIndicator(
             onRefresh: _reload,
@@ -77,30 +84,38 @@ class _ChartsScreenState extends ConsumerState<ChartsScreen> {
           await showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: const Text('Create Chart'),
+              title: Text(t.createChart),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextField(controller: _name, decoration: const InputDecoration(labelText: 'Name')),
-                  TextField(controller: _birth, decoration: const InputDecoration(labelText: 'Birth (ISO8601)')),
+                  TextField(
+                    controller: _name,
+                    decoration: InputDecoration(labelText: t.name),
+                  ),
+                  TextField(
+                    controller: _birth,
+                    decoration: InputDecoration(labelText: t.birthIso),
+                  ),
                 ],
               ),
               actions: [
-                TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(t.cancel),
+                ),
                 ElevatedButton(
                   onPressed: () async {
-                    await ref.read(chartsServiceProvider).create(
-                          name: _name.text,
-                          birthDatetime: _birth.text,
-                        );
-                    if (!mounted) return;
+                    await ref
+                        .read(chartsServiceProvider)
+                        .create(name: _name.text, birthDatetime: _birth.text);
+                    if (!context.mounted) return;
                     Navigator.pop(context);
                     _name.clear();
                     _birth.clear();
                     await _reload();
                   },
-                  child: const Text('Create'),
-                )
+                  child: Text(t.create),
+                ),
               ],
             ),
           );
@@ -110,4 +125,3 @@ class _ChartsScreenState extends ConsumerState<ChartsScreen> {
     );
   }
 }
-

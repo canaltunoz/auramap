@@ -1,9 +1,14 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorage {
-  static const _storage = FlutterSecureStorage();
+  static const FlutterSecureStorage _storage = FlutterSecureStorage();
   static const _keyAccess = 'access_token';
   static const _keyRefresh = 'refresh_token';
+
+  // Generic helpers
+  static Future<void> write(String key, String? value) =>
+      _storage.write(key: key, value: value);
+  static Future<String?> read(String key) => _storage.read(key: key);
 
   static Future<void> saveTokens(String access, String refresh) async {
     await _storage.write(key: _keyAccess, value: access);
@@ -18,4 +23,3 @@ class SecureStorage {
     await _storage.delete(key: _keyRefresh);
   }
 }
-

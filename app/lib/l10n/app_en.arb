@@ -1,0 +1,28 @@
+{
+  "appTitle": "AuraMap",
+  "login": "Login",
+  "register": "Register",
+  "createAccount": "Create account",
+  "email": "Email",
+  "password": "Password",
+  "noAccountRegister": "No account? Register",
+  "haveAccountLogin": "Have an account? Login",
+  "charts": "Charts",
+  "logout": "Logout",
+  "noChartsYet": "No charts yet",
+  "createChart": "Create Chart",
+  "name": "Name",
+  "birthIso": "Birth (ISO8601)",
+  "cancel": "Cancel",
+  "create": "Create",
+  "settings": "Settings",
+  "theme": "Theme",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "language": "Language",
+  "languageSystem": "System",
+  "languageEnglish": "English",
+  "languageTurkish": "Turkish"
+}
+
