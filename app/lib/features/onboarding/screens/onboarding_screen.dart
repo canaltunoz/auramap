@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auramap_app/l10n/app_localizations.dart';
+import '../../../core/ui/themed_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/storage/secure_storage.dart';
 
@@ -15,17 +16,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   final _pages = [
     _OnbPage(
-      image: 'assets/images/onboard1.png',
+      baseName: 'Onboard1',
       title: (t) => t.onb1Title,
       body: (t) => t.onb1Body,
     ),
     _OnbPage(
-      image: 'assets/images/onboard2.png',
+      baseName: 'Onboard2',
       title: (t) => t.onb2Title,
       body: (t) => t.onb2Body,
     ),
     _OnbPage(
-      image: 'assets/images/onboard3.png',
+      baseName: 'Onboard3',
       title: (t) => t.onb3Title,
       body: (t) => t.onb3Body,
     ),
@@ -111,11 +112,11 @@ typedef LGetter = String Function(AppLocalizations t);
 
 class _OnbPage extends StatelessWidget {
   const _OnbPage({
-    required this.image,
+    required this.baseName,
     required this.title,
     required this.body,
   });
-  final String image;
+  final String baseName;
   final LGetter title;
   final LGetter body;
   @override
@@ -128,7 +129,7 @@ class _OnbPage extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 12),
-          Image.asset(image, height: 220, fit: BoxFit.contain),
+          ThemedImage(baseName: baseName, height: 220, fit: BoxFit.contain),
           const SizedBox(height: 24),
           Text(
             titleText,

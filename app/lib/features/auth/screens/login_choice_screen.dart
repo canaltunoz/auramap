@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auramap_app/l10n/app_localizations.dart';
+import '../../../core/ui/themed_image.dart';
 
 class LoginChoiceScreen extends StatelessWidget {
   const LoginChoiceScreen({super.key});
@@ -13,12 +14,17 @@ class LoginChoiceScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/login.png', height: 220, fit: BoxFit.contain),
+            const ThemedImage(
+              baseName: 'Login',
+              height: 220,
+              fit: BoxFit.contain,
+            ),
             const SizedBox(height: 24),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () => Navigator.of(context).pushReplacementNamed('/login'),
+                onPressed: () =>
+                    Navigator.of(context).pushReplacementNamed('/login'),
                 child: Text(t.login),
               ),
             ),
@@ -28,4 +34,3 @@ class LoginChoiceScreen extends StatelessWidget {
     );
   }
 }
-
