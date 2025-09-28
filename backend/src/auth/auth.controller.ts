@@ -5,6 +5,7 @@ import { GetUser } from '../common/decorators/get-user.decorator';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 import { RefreshDto } from './dto/refresh.dto';
+import { GoogleLoginDto } from './dto/google-login.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('auth')
@@ -20,6 +21,11 @@ export class AuthController {
   @Post('login')
   async login(@Body() dto: LoginDto) {
     return this.auth.login(dto.email, dto.password);
+  }
+
+  @Post('google')
+  async googleLogin(@Body() dto: GoogleLoginDto) {
+    return this.auth.googleLogin(dto.serverAuthCode);
   }
 
   @Post('refresh')

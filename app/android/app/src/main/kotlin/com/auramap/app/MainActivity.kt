@@ -1,4 +1,4 @@
-package com.example.auramap_app
+package com.auramap.app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -61,21 +61,33 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 height: 8,
                 decoration: BoxDecoration(
                   color: active
-                      ? Theme.of(context).colorScheme.primary
+                      ? const Color(0xFFD4AF37)
                       : Colors.grey.shade400,
                   borderRadius: BorderRadius.circular(4),
                 ),
               );
             }),
           ),
-          const SizedBox(height: 12),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
+            padding: const EdgeInsets.only(
+              left: 24.0,
+              right: 24.0,
+              top: 8.0,
+              bottom: 32.0,
+            ),
             child: Column(
               children: [
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFD4AF37),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
                     onPressed: () async {
                       if (_index < _pages.length - 1) {
                         _controller.nextPage(
@@ -97,6 +109,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide.none, // Remove border
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
                     onPressed: () async {
                       await _markSeen();
                       if (!context.mounted) return;
@@ -133,19 +152,24 @@ class _OnbPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 12),
-          ThemedImage(baseName: baseName, height: 220, fit: BoxFit.contain),
-          const SizedBox(height: 24),
+          ThemedImage(baseName: baseName, height: 280, fit: BoxFit.contain),
+          const SizedBox(height: 32),
           Text(
             titleText,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
           Text(
             bodyText,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
             textAlign: TextAlign.center,
           ),
         ],

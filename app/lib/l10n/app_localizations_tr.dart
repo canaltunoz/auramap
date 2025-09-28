@@ -82,4 +82,34 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get languageTurkish => 'Türkçe';
+
+  @override
+  String get skip => 'Atla';
+
+  @override
+  String get next => 'İleri';
+
+  @override
+  String get startNow => 'Şimdi Başla';
+
+  @override
+  String get onb1Title => 'Kendini Keşfet';
+
+  @override
+  String get onb1Body => 'Yolculuğuna başla. Benzersiz tasarımını keşfet.';
+
+  @override
+  String get onb2Title => 'Kişisel Yol Haritan';
+
+  @override
+  String get onb2Body => 'Haritanı, stratejini ve otoriteni gör.';
+
+  @override
+  String get onb3Title => 'Günlük Rehberin';
+
+  @override
+  String get onb3Body => 'Her gün içgörüler ve ipuçları al.';
+
+  @override
+  String get continueLabel => 'Devam et';
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auramap_app/l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'core/localization/locale_provider.dart';
 import 'core/theme/theme_provider.dart';
 import 'features/auth/screens/login_screen.dart';
@@ -12,7 +13,12 @@ import 'features/settings/screens/settings_screen.dart';
 import 'features/splash/splash_screen.dart';
 import 'features/onboarding/screens/onboarding_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Load environment variables
+  await dotenv.load(fileName: ".env");
+
   runApp(const ProviderScope(child: MyApp()));
 }
 

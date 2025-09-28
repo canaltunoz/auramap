@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/storage/secure_storage.dart';
-import '../../core/ui/themed_image.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -11,19 +10,53 @@ class SplashScreen extends ConsumerStatefulWidget {
   ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends ConsumerState<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _fadeAnimation;
+  late Animation<double> _scaleAnimation;
+
   @override
   void initState() {
     super.initState();
-    scheduleMicrotask(_navigate);
+
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: this,
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: const Interval(0.0, 0.6, curve: Curves.easeOut),
+      ),
+    );
+
+    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: const Interval(0.2, 0.8, curve: Curves.elasticOut),
+      ),
+    );
+
+    _startAnimation();
+  }
+
+  void _startAnimation() async {
+    await _animationController.forward();
+
+    // Wait a bit more to show the splash
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    _navigate();
   }
 
   Future<void> _navigate() async {
-    await Future.delayed(const Duration(milliseconds: 5000));
     final seen = await SecureStorage.read('onboarding_seen');
     final isAuthed = (await SecureStorage.getAccess())?.isNotEmpty == true;
 
     if (!mounted) return;
+
     if (seen != 'true') {
       Navigator.of(context).pushReplacementNamed('/onboarding');
       return;
@@ -36,22 +69,102 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const ThemedImage(
-              baseName: 'Login',
-              width: 160,
-              fit: BoxFit.contain,
+      backgroundColor: isDark ? const Color(0xFF1A1A1A) : Colors.white,
+      body: Stack(
+        children: [
+          // Background - clean white/light gray
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: isDark
+                    ? [const Color(0xFF1A1A1A), const Color(0xFF2D2D2D)]
+                    : [const Color(0xFFFAFAFA), Colors.white],
+              ),
             ),
-            const SizedBox(height: 16),
-            Text('Human Design', style: theme.textTheme.titleLarge),
-          ],
-        ),
+          ),
+
+          // Human silhouette PNG - full screen height, positioned on the right edge
+          Positioned(
+            right: -MediaQuery.of(context).size.width * 0.15,
+            top: 0,
+            bottom: 0,
+            width: MediaQuery.of(context).size.width * 1.0,
+            child: AnimatedBuilder(
+              animation: _fadeAnimation,
+              builder: (context, child) {
+                return Opacity(
+                  opacity: _fadeAnimation.value * 0.5,
+                  child: Image.asset(
+                    'assets/images/human.png',
+                    fit: BoxFit.cover,
+                    alignment: Alignment.centerRight,
+                    color: const Color(0xFFD4AF37), // Gold color
+                    colorBlendMode: BlendMode.srcATop,
+                  ),
+                );
+              },
+            ),
+          ),
+
+          // Main content
+          Center(
+            child: AnimatedBuilder(
+              animation: _animationController,
+              builder: (context, child) {
+                return Transform.scale(
+                  scale: _scaleAnimation.value,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Main title - Human Design
+                        Text(
+                          'Human Design',
+                          style: theme.textTheme.displayMedium?.copyWith(
+                            color: isDark
+                                ? Colors.white70
+                                : const Color(0xFF4A4A4A),
+                            fontWeight: FontWeight.w300,
+                            letterSpacing: 2.0,
+                            fontSize: 32,
+                          ),
+                        ),
+
+                        const SizedBox(height: 64),
+
+                        // Loading indicator
+                        SizedBox(
+                          width: 32,
+                          height: 32,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2.5,
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                              Color(0xFFD4AF37), // Gold color
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -82,4 +82,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languageTurkish => 'Turkish';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get startNow => 'Start Now';
+
+  @override
+  String get onb1Title => 'Discover Yourself';
+
+  @override
+  String get onb1Body => 'Begin your journey. Explore your unique design.';
+
+  @override
+  String get onb2Title => 'Your Personal Roadmap';
+
+  @override
+  String get onb2Body => 'See your chart, strategy and authority.';
+
+  @override
+  String get onb3Title => 'Your Daily Guide';
+
+  @override
+  String get onb3Body => 'Receive insights and tips every day.';
+
+  @override
+  String get continueLabel => 'Continue';
 }

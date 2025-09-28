@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1056227600721",
+    "project_id": "auramap-a21d3",
+    "storage_bucket": "auramap-a21d3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056227600721:android:6a031716417883a29d8b70",
+        "android_client_info": {
+          "package_name": "com.auramap.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056227600721-bk6tqf88lmao8popdiqh48c3d7bhvbcd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.auramap.app",
+            "certificate_hash": "10dac02a0408ef7ae0a4d9b895bc28bd6bc1f4da"
+          }
+        },
+        {
+          "client_id": "1056227600721-77uvj1hu03mi7v0g1ne9imcahpbdf7ch.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDllMG7f-l-BXgAtqjUxnvzusHufnxpH84"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056227600721-77uvj1hu03mi7v0g1ne9imcahpbdf7ch.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

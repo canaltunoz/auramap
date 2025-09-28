@@ -57,6 +57,16 @@ class AuthNotifier extends Notifier<AuthState> {
     }
   }
 
+  Future<void> googleLogin(String idToken) async {
+    state = state.copyWith(loading: true, error: null);
+    try {
+      await _service.googleLogin(idToken);
+      state = state.copyWith(loading: false, authenticated: true);
+    } catch (e) {
+      state = state.copyWith(loading: false, error: 'Google login failed');
+    }
+  }
+
   Future<void> logout() async {
     await _service.logout();
     state = state.copyWith(authenticated: false);
